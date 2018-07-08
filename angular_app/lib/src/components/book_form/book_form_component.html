@@ -1,0 +1,26 @@
+<div class="container">
+    <h3 class="center-align">Book Form</h3>
+    <div class="divider"></div>
+    <br>
+    <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+        <div class="row">
+            <material-input class="col s12 m6" floatingLabel type="text" label="Book Name" id="name" required
+                [(ngModel)]="book.name" ngControl="name"></material-input>
+            <material-input class="col s12 m6" floatingLabel type="number" label="Price" id="price" required
+                [(ngModel)]="book.price" ngControl="price"></material-input>
+        </div>
+
+        <div class="row">
+            <material-input class="col s12 m6" floatingLabel type="number" label="Author" id="author" required
+                [(ngModel)]="book.author" ngControl="author"></material-input>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m4 l6">
+                <button [disabled]="!bookForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <mark>{{book.toJson()}}</mark>
+</div>

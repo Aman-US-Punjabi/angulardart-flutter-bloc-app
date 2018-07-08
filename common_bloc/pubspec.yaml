@@ -1,0 +1,17 @@
+name: common_bloc
+description: A starting point for Dart libraries or applications.
+# version: 1.0.0
+# homepage: https://www.example.com
+# author: aman <email@example.com>
+
+environment:
+  sdk: '>=2.0.0-dev.66.0 <2.0.0'
+
+dependencies:
+#  path: ^1.4.1
+  meta: "^1.1.2"
+  rxdart: "^0.16.7"
+  tuple: '^1.0.1'
+
+dev_dependencies:
+  test: ^1.0.0
