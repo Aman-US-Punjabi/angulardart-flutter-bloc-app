@@ -7,7 +7,7 @@ import 'package:common_bloc/common_bloc.dart';
 import 'package:angular_components/material_button/material_fab.dart';
 import 'package:angular_components/material_icon/material_icon.dart';
 
-import '../../state/container.dart';
+import '../../services/state_container_service.dart';
 
 @Component(
   selector: 'book-list',
@@ -19,12 +19,12 @@ import '../../state/container.dart';
     MaterialIconComponent
   ],
   providers: [
-    StateContainer
+    StateContainerService
   ],
   pipes: [commonPipes]
 )
 class BookListComponent implements AfterViewInit {
-  final StateContainer stateContainer;
+  final StateContainerService stateContainer;
 
   BookListComponent(this.stateContainer);
 

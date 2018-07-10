@@ -16,7 +16,7 @@ import 'package:angular_components/material_list/material_list_item.dart';
 import 'package:angular_components/material_toggle/material_toggle.dart';
 
 import '../../services/database_service.dart';
-import '../../state/container.dart';
+import '../../services/state_container_service.dart';
 
 
 @Component(
@@ -40,19 +40,19 @@ import '../../state/container.dart';
   ],
   providers: [
     DatabaseService,
-    StateContainer,
+    StateContainerService,
     materialProviders
   ]
 )
 class AppHeaderComponent {
   bool end = false;
   // final DatabaseService dbService;
-  final StateContainer stateContainer;
+  final StateContainerService stateContainer;
   final Routes routes;
 
   AppHeaderComponent(
     // DatabaseService this.dbService,
-    StateContainer this.stateContainer,
+    StateContainerService this.stateContainer,
     Routes this.routes
   );
 }

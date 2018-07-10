@@ -3,6 +3,16 @@
         <div group class="mat-drawer-spacer"></div>
         <div group>
             <material-list-item>
+                <a [routerLink]="routes.books.toUrl()" routerLinkActive="active">
+                    <material-icon icon="star"></material-icon>Books
+                </a>
+            </material-list-item>
+            <material-list-item>
+                <a [routerLink]="routes.bookForm.toUrl()" routerLinkActive="active">
+                    <material-icon icon="star"></material-icon>New Book Form
+                </a>
+            </material-list-item>
+            <material-list-item>
                 <material-icon icon="star"></material-icon>Gallery
             </material-list-item>
             <material-list-item>
