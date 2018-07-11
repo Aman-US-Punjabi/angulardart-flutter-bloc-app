@@ -5,6 +5,7 @@ library common;
 
 // api
 export 'src/api/authentication.dart';
+export 'src/api/book.dart';
 export 'src/api/firebase.dart';
 
 // bloc

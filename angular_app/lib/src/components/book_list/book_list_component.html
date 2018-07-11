@@ -1,12 +1,28 @@
 <div class="container">
+
+    <h3 class="center-align">Books</h3>
+
+    <div class="row">
+        <div *ngIf="authService.user != null" class="right-align">
+            <a [routerLink]="routes.bookCreate.toUrl()" routerLinkActive="active">
+                <material-fab mini raised class="red lighten-2 white-text">
+                    <material-icon icon="add"></material-icon>
+                </material-fab>
+            </a>
+        </div>
+    </div>
+
     <div class="row">
         <div *ngFor="let book of books | async">
             <div class="col s12 m6 l4">
-                <a >
                     <div class="card">
                         <div class="card-image">
-                            <img *ngIf="book?.mainImage != null" src="{{book?.mainImage}}">
-                            <img *ngIf="book?.mainImage == null" src="http://askandysmith.com/wp-content/uploads/2016/05/Colourful-Books-web.png">
+                            <div [ngSwitch]="book?.mainImage">
+                                <img height="200" width="100" *ngSwitchCase="''" src="http://askandysmith.com/wp-content/uploads/2016/05/Colourful-Books-web.png">
+                                <img height="200" width="100" *ngSwitchCase="null" src="http://askandysmith.com/wp-content/uploads/2016/05/Colourful-Books-web.png">
+
+                                <img height="200" width="100" *ngSwitchDefault src="{{book?.mainImage}}">
+                            </div>
                             
                         </div>
                         <div class="card-content">
@@ -14,13 +30,24 @@
                             <div>$ {{book?.price}} per day</div>
                         </div>
                         <div class="card-action">
-                            <a href="#">More Info</a>
-                            <material-fab mini raised class="red lighten-2 white-text">
-                                <material-icon icon="add"></material-icon>
-                            </material-fab>
+                            <div class="row">
+                                    <a (click)="onGoToBookDetail(book)">
+                                        More Info
+                                    </a>
+
+                                    <div *ngIf="authService.user != null" class="right-align">
+                                        <div class="section"></div>
+                                        <material-fab mini raised class="blue lighten-2 white-text" (click)="onEditBook(book)">
+                                            <material-icon icon="edit"></material-icon>
+                                        </material-fab>
+                                        
+                                        <material-fab mini raised class="red lighten-2 white-text" (click)="deleteBook(book)">
+                                            <material-icon icon="delete"></material-icon>
+                                        </material-fab>
+                                    </div>
+                            </div>
                         </div>
                     </div>
-                </a>
             </div>
         </div>
     </div>

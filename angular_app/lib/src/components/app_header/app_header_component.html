@@ -8,7 +8,7 @@
                 </a>
             </material-list-item>
             <material-list-item>
-                <a [routerLink]="routes.bookForm.toUrl()" routerLinkActive="active">
+                <a [routerLink]="routes.bookCreate.toUrl()" routerLinkActive="active">
                     <material-icon icon="star"></material-icon>New Book Form
                 </a>
             </material-list-item>
@@ -26,7 +26,7 @@
     </material-list>
 </material-drawer>
 
-<material-content>
+<div class="material-content">
     <header class="material-header shadow">
         <div class="material-header-row">
             <material-button icon class="material-drawer-button" (trigger)="drawer.toggle()">
@@ -36,16 +36,16 @@
             <div class="material-spacer"></div>
             <nav class="material-navigation">
                 <!-- show only if not logged in -->
-                <div id="sign-in" *ngIf="stateContainer.authenticationBloc.user == null" class="horiz">
-                    <material-button raised class="blue" (trigger)="stateContainer.authenticationBloc.signInUsingGoogle()">Sign In</material-button>
+                <div id="sign-in" *ngIf="authService.user == null" class="horiz">
+                    <material-button raised class="blue" (trigger)="authService.signInUsingGoogle()">Sign In</material-button>
                 </div>
                 <!-- show only if logged in -->
-                <div id="sign-out" *ngIf="stateContainer.authenticationBloc.user != null" class="horiz">
-                    <img class="icon" [src]="stateContainer.authenticationBloc.user?.photoURL">
-                    <material-button raised class="red" (trigger)="stateContainer.authenticationBloc.signOut()">Sign Out</material-button>
+                <div id="sign-out" *ngIf="authService.user != null" class="horiz">
+                    <img class="circle responsive-img" width="50" height="50" [src]="authService.user?.photoURL">
+                    <material-button raised class="red" (trigger)="authService.signOut()">Sign Out</material-button>
                 </div>
 
             </nav>
         </div>
     </header>
-</material-content>
+</div>

@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
+import 'package:angular_router/angular_router.dart';
 
 import 'package:common_bloc/common_bloc.dart';
 
@@ -24,13 +26,21 @@ import 'package:angular_components/model/selection/string_selection_options.dart
 import 'package:angular_components/model/ui/display_name.dart';
 import 'package:angular_components/model/ui/has_factory.dart';
 
+import '../../services/book_service.dart';
+
+import '../../route_paths.dart' as paths;
+
 @Component(
   selector: 'book-form',
   templateUrl: 'book_form_component.html',
   styleUrls: [
     'book_form_component.scss.css'
   ],
-  providers: popupBindings,
+  providers: [
+    popupBindings,
+    BookService
+  ],
+  pipes: [commonPipes],
   directives: [
     coreDirectives,
     formDirectives,
@@ -40,14 +50,39 @@ import 'package:angular_components/model/ui/has_factory.dart';
     DropdownSelectValueAccessor
   ]
 )
-class BookFormComponent {
+class BookFormComponent implements OnActivate {
+  BookService bookService;
+
+  bool isNewBook = true;
+
   BookModel book = new BookModel(
+    author: null,
     name: null,
-    price: null,
-    author: null
+    price: null
   );
 
   bool submitted = false;
 
-  void onSubmit() => submitted = true;
+  void onSubmit() async { 
+    submitted = true;
+
+    print(book.toJson());
+    if (isNewBook) {
+      bookService.bookBloc.create.add(book);
+    } else {
+      bookService.bookBloc.update.add(book);
+    }
+  }
+
+  @override
+  void onActivate(_, RouterState current) async {
+    final id = paths.getId(current.parameters);
+
+    if (id != null) {
+      isNewBook = false;
+      book = await bookService.bookBloc.getBookById(id: "$id").first;
+    } 
+  }
+
+  BookFormComponent(this.bookService);
 }

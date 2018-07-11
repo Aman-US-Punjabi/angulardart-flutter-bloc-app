@@ -16,8 +16,8 @@ import 'package:angular_components/material_list/material_list_item.dart';
 import 'package:angular_components/material_toggle/material_toggle.dart';
 
 import '../../services/database_service.dart';
-import '../../services/state_container_service.dart';
 
+import '../../services/auth_service.dart';
 
 @Component(
   selector: 'app-header',
@@ -40,19 +40,19 @@ import '../../services/state_container_service.dart';
   ],
   providers: [
     DatabaseService,
-    StateContainerService,
+    // ClassProvider(AuthService),
     materialProviders
   ]
 )
 class AppHeaderComponent {
   bool end = false;
   // final DatabaseService dbService;
-  final StateContainerService stateContainer;
+  final AuthService authService;
   final Routes routes;
 
   AppHeaderComponent(
     // DatabaseService this.dbService,
-    StateContainerService this.stateContainer,
+    AuthService this.authService,
     Routes this.routes
   );
 }

@@ -5,6 +5,8 @@ import 'src/routes.dart';
 
 import 'package:angular_app/src/components/app_header/app_header_component.dart';
 
+import './src/services/auth_service.dart';
+
 @Component(
   selector: 'my-app',
   styleUrls: ['app_component.scss.css'],
@@ -15,10 +17,12 @@ import 'package:angular_app/src/components/app_header/app_header_component.dart'
   ],
   providers: [
     ClassProvider(Routes),
+    ClassProvider(AuthService)
   ]
 )
 class AppComponent {
   final Routes routes;
+  final AuthService authService;
 
-  AppComponent(this.routes);
+  AppComponent(this.routes, this.authService);
 }

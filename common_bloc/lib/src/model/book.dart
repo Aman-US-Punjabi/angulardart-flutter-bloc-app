@@ -51,8 +51,8 @@ class BookModel extends Model {
   @override
   Map<String, dynamic> toJson() {
     final imagesJson = {
-      'main_image': mainImage,
-      'all': allImages
+      'main_image': mainImage ?? null,
+      'all': allImages ?? null
     };
 
     return {
