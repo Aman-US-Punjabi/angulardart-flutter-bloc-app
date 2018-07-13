@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 
@@ -15,7 +14,6 @@ import 'package:angular_components/material_list/material_list.dart';
 import 'package:angular_components/material_list/material_list_item.dart';
 import 'package:angular_components/material_toggle/material_toggle.dart';
 
-import '../../services/database_service.dart';
 
 import '../../services/auth_service.dart';
 
@@ -39,7 +37,6 @@ import '../../services/auth_service.dart';
     MaterialToggleComponent
   ],
   providers: [
-    DatabaseService,
     // ClassProvider(AuthService),
     materialProviders
   ]

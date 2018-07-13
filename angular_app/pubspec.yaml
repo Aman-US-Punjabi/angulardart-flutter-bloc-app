@@ -18,6 +18,7 @@ dependencies:
   angular_router: "^2.0.0-alpha+14"
   angular_forms: "^2.0.0-beta"
   firebase: "^4.5.1"
+  pwa: "^0.1.10"
 
 dev_dependencies:
   sass_builder: "^2.0.3"

@@ -1,10 +1,6 @@
-import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:firebase/firebase.dart';
-import 'package:common_bloc/common_bloc.dart';
-
-import '../api/authentication_angular_api.dart';
 
 @Injectable()
 class AuthService {

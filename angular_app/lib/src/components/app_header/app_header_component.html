@@ -1,6 +1,10 @@
 <material-drawer temporary #drawer="drawer" [attr.end]="end ? '' : null">
+    <!-- show only if logged in -->
+    <img  *ngIf="authService.user != null" class="img-thumbnail mb-3" [src]="authService.user?.photoURL">
+
     <material-list *deferredContent>
-        <div group class="mat-drawer-spacer"></div>
+        <!-- show only if not logged in -->
+        <div *ngIf="authService.user == null" group class="mat-drawer-spacer"></div>
         <div group>
             <material-list-item>
                 <a [routerLink]="routes.books.toUrl()" routerLinkActive="active">
@@ -21,6 +25,17 @@
              <material-list-item>
                 <material-icon icon="star"></material-icon>Rules Policy
             </material-list-item>
+            <hr>
+            <!-- show only if not logged in -->
+            <material-list-item *ngIf="authService.user == null"  (trigger)="authService.signInUsingGoogle()">
+                <material-icon icon="account_circle"></material-icon>
+                Sign In
+            </material-list-item>
+            <!-- show only if logged in -->
+            <material-list-item *ngIf="authService.user != null"  (trigger)="authService.signOut()" class="justify-content-center">
+                Sign Out
+            </material-list-item>
+            
         </div>
 
     </material-list>
@@ -41,8 +56,7 @@
                 </div>
                 <!-- show only if logged in -->
                 <div id="sign-out" *ngIf="authService.user != null" class="horiz">
-                    <img class="circle responsive-img" width="50" height="50" [src]="authService.user?.photoURL">
-                    <material-button raised class="red" (trigger)="authService.signOut()">Sign Out</material-button>
+                    <img class="rounded-circle responsive-img" width="50" height="50" [src]="authService.user?.photoURL">
                 </div>
 
             </nav>

@@ -67,7 +67,6 @@ class AuthenticationAngularApi extends AuthenticationApi<User> {
 
   @override
   Future<User> signInUsingGoogle() async {
-    // TODO: implement signInUsingGoogle
     try {
       UserCredential userCredential = await _fbAuth.signInWithPopup(_fbGoogleAuthProvider);
       User userData = userCredential.user;

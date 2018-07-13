@@ -9,6 +9,7 @@ import 'package:common_bloc/common_bloc.dart';
 import 'package:angular_components/material_input/material_input.dart';
 import 'package:angular_components/material_input/material_number_accessor.dart';
 import 'package:angular_components/material_select/material_dropdown_select.dart';
+import 'package:angular_components/material_button/material_button.dart';
 
 
 import 'package:angular_components/laminate/enums/alignment.dart';
@@ -46,6 +47,7 @@ import '../../route_paths.dart' as paths;
     formDirectives,
     materialInputDirectives,
     materialNumberInputDirectives,
+    MaterialButtonComponent,
     MaterialDropdownSelectComponent,
     DropdownSelectValueAccessor
   ]

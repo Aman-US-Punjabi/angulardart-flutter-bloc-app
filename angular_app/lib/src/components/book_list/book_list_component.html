@@ -1,9 +1,9 @@
 <div class="container">
 
-    <h3 class="center-align">Books</h3>
+    <h3 class="d-flex justify-content-center mt-5 p-3">Books</h3>
 
-    <div class="row">
-        <div *ngIf="authService.user != null" class="right-align">
+    <div class="d-flex flex-row-reverse">
+        <div *ngIf="authService.user != null" class="float-right">
             <a [routerLink]="routes.bookCreate.toUrl()" routerLinkActive="active">
                 <material-fab mini raised class="red lighten-2 white-text">
                     <material-icon icon="add"></material-icon>
@@ -11,43 +11,41 @@
             </a>
         </div>
     </div>
+    <hr>
+    <div class=" row">
+        <div *ngFor="let book of books | async" class="col-sm-12 col-md-6 col-lg-3 mb-3">
+            <div class="card d-flex">
+            <div [ngSwitch]="book?.mainImage">
+                <img class="card-img-top" height="200" width="100" *ngSwitchCase="''" src="http://askandysmith.com/wp-content/uploads/2016/05/Colourful-Books-web.png">
+                <img class="card-img-top" height="200" width="100" *ngSwitchCase="null" src="http://askandysmith.com/wp-content/uploads/2016/05/Colourful-Books-web.png">
 
-    <div class="row">
-        <div *ngFor="let book of books | async">
-            <div class="col s12 m6 l4">
-                    <div class="card">
-                        <div class="card-image">
-                            <div [ngSwitch]="book?.mainImage">
-                                <img height="200" width="100" *ngSwitchCase="''" src="http://askandysmith.com/wp-content/uploads/2016/05/Colourful-Books-web.png">
-                                <img height="200" width="100" *ngSwitchCase="null" src="http://askandysmith.com/wp-content/uploads/2016/05/Colourful-Books-web.png">
-
-                                <img height="200" width="100" *ngSwitchDefault src="{{book?.mainImage}}">
-                            </div>
+                <img class="card-img-top" height="200" width="100" *ngSwitchDefault src="{{book?.mainImage}}">
+            </div>
                             
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title">{{book?.name}}</span>
-                            <div>$ {{book?.price}} per day</div>
-                        </div>
-                        <div class="card-action">
-                            <div class="row">
-                                    <a (click)="onGoToBookDetail(book)">
-                                        More Info
-                                    </a>
+            <div class="card-body">
+                <span class="card-title">{{book?.name}}</span>
+                <div>$ {{book?.price}} per day</div>
+            </div>
 
-                                    <div *ngIf="authService.user != null" class="right-align">
-                                        <div class="section"></div>
-                                        <material-fab mini raised class="blue lighten-2 white-text" (click)="onEditBook(book)">
-                                            <material-icon icon="edit"></material-icon>
-                                        </material-fab>
-                                        
-                                        <material-fab mini raised class="red lighten-2 white-text" (click)="deleteBook(book)">
-                                            <material-icon icon="delete"></material-icon>
-                                        </material-fab>
-                                    </div>
-                            </div>
-                        </div>
+            <hr>
+
+            <div class="card-body">
+                <div class="row">
+                    <a (click)="onGoToBookDetail(book)" class="col">
+                        More Info
+                    </a>
+
+                    <div *ngIf="authService.user != null" class="right-align">
+                        <material-fab mini raised class="blue lighten-2 white-text" (click)="onEditBook(book)">
+                            <material-icon icon="edit"></material-icon>
+                        </material-fab>
+                        
+                        <material-fab mini raised class="red lighten-2 white-text" (click)="deleteBook(book)">
+                            <material-icon icon="delete"></material-icon>
+                        </material-fab>
                     </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>
