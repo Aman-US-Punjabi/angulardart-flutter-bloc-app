@@ -3,6 +3,7 @@ import 'package:angular_app/pwa/offline_urls.g.dart' as offline;
 
 /// The Progressive Web Application's entry point.
 void main() {
+    print('In main pwa');
   // The Worker handles the low-level code for initialization, fetch API
   // routing and (later) messaging.
   Worker worker = new Worker();
@@ -25,8 +26,10 @@ void main() {
   // worker.router.registerGetUrl('https://cdn.example.com/', cache.networkFirst);
 
   worker.pushHandler = (PushContext pushContext) async {
+    print('Notication got');
     await pushContext.showNotification(new Notification('Push even received.'));
   };
+
 
   // Start the worker.
   worker.run(version: offline.lastModified);

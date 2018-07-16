@@ -2,13 +2,16 @@ import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:angular_app/app_component.template.dart' as ng;
 import 'package:firebase/firebase.dart' as fb;
-import 'package:pwa/client.dart' as pwa;
+import 'pwa.dart' as pwa;
 
 import 'main.template.dart' as self;
 
-@GenerateInjector(
+import 'package:angular_app/src/services/pwa_service.dart';
+
+@GenerateInjector([
   routerProvidersHash, // You can use routerProviders in production
-)
+  ClassProvider(PwaService),
+])
 final InjectorFactory injector = self.injector$Injector;
 
 void main() {
@@ -20,8 +23,9 @@ void main() {
     messagingSenderId: "689903894287"
   );
 
+  pwa.main();
   // Install service worker.
-  pwa.Client();
+  // pwa.Client();
 
   runApp(ng.AppComponentNgFactory, createInjector: injector,);
 }

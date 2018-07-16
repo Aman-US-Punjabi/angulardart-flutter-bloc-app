@@ -1,8 +1,10 @@
 /// URLs for offline cache.
 final List<String> offlineUrls = [
   './',
+  './404.html',
   './favicon.png',
   './main.dart.js',
+  './manifest.json',
   // './packages/$sdk/_internal/ddc_sdk.sum',
   // './packages/$sdk/_internal/spec.sum',
   // './packages/$sdk/_internal/strong.sum',
@@ -275,4 +277,4 @@ final List<String> offlineUrls = [
 ];
 
 /// Last modified timestamp of the files
-final String lastModified = '2018-07-12T23:21:59.033Z';
+final String lastModified = '2018-07-16T03:25:29.525Z';

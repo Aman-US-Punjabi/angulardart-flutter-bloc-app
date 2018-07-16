@@ -38,6 +38,8 @@ class AuthService {
   signInUsingGoogle() async {
     try {
       UserCredential userCredential = await _fbAuth.signInWithPopup(_fbGoogleAuthProvider);
+      print(userCredential.user.refreshToken);
+      print(userCredential.user.toJson());
       user = userCredential.user;
     } catch (error) {
       print('$runtimeType::login() -- $error');
